@@ -8,7 +8,7 @@ namespace MVCParte2.Controllers
 {
     public class UsuariosController : Controller
     {
-        // GET: Usuarios
+        
         public ActionResult Index()
         {
             return View();
@@ -22,7 +22,27 @@ namespace MVCParte2.Controllers
             listaUsuarios.Add("Raul");
             listaUsuarios.Add("Martin");
             listaUsuarios.Add("Ernesto");
+
+            //ViewBag.ListaUsuarios = listaUsuarios;
+            //TempData["ListaUsuarios"] = listaUsuarios;
+            //Session["ListaUsuarios"] = listaUsuarios;
+            ViewData["ListaUsuarios"] = listaUsuarios;
+
             return View(listaUsuarios);
         }
+
+        [HttpPost]
+        public ActionResult ListaUsuarios(string selUsuarios)
+        {
+            ViewBag.Nombre = selUsuarios;
+            //List<string> listaUsuarios = ViewBag.ListaUsuarios;
+            //List<string> listaUsuarios = (List<string>)TempData["ListaUsuarios"];
+            //List<string> listaUsuarios = (List<string>)Session["ListaUsuarios"];
+            List<string> listaUsuarios = (List<string>)ViewData["ListaUsuarios"];
+            return View(listaUsuarios);
+        }
+
+
+
     }
 }
